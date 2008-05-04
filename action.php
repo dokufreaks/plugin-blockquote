@@ -26,9 +26,9 @@ class action_plugin_blockquote extends DokuWiki_Action_Plugin {
 	 */
 	function getInfo() {
 		return array (
-			'author' => 'Tobias Deutsch',
-			'email' => 'tobias@strix.at',
-			'date' => '2008-01-26',
+			'author' => 'Gina Haeussge',
+			'email' => 'osd@foosel.net',
+			'date' => '2008-05-04',
 			'name' => 'Blockquote Plugin (action component)',
 			'desc' => 'Provides an environment for quotes in a semantically correct way using the blockquote XHTML tag. Action component provides toolbar button.',
 			'url' => 'http://wiki.foosel.net/snippets/dokuwiki/blockquote',

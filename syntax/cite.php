@@ -20,7 +20,7 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
         return array (
             'author' => 'Gina Haeussge',
             'email' => 'osd@foosel.net',
-            'date' => '2008-02-13',
+            'date' => '2008-05-04',
             'name' => 'Blockquote Plugin (cite component)',
             'desc' => 'Provides an environment for quotes in a semantically correct way using the blockquote XHTML tag',
             'url' => 'http://wiki.foosel.net/snippets/dokuwiki/blockquote',
