@@ -47,14 +47,9 @@ class action_plugin_blockquote extends DokuWiki_Action_Plugin {
 	 * Inserts a toolbar button
 	 */
 	function blockquote_button(& $event, $param) {
-		global $lang;
-		global $conf;
-
-		include_once (dirname(__FILE__) . '/lang/en/lang.php');
-		@include_once (dirname(__FILE__) . '/lang/' . $conf['lang'] . '/lang.php');
 		$event->data[] = array (
 			'type' => 'format',
-			'title' => $lang['qb_blockquote'],
+			'title' => $this->getLang('qb_blockquote'),
 			'icon' => '../../plugins/blockquote/images/blockquote-icon.png',
 			'open' => '<blockquote>',
 			'close' => '</blockquote>',
