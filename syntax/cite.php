@@ -8,24 +8,13 @@
  * @author  Gina Haeussge <osd@foosel.net>
  */
 
-if (!defined('DOKU_INC'))
-    define('DOKU_INC', realpath(dirname(__FILE__) . '/../../') . '/');
-if (!defined('DOKU_PLUGIN'))
-    define('DOKU_PLUGIN', DOKU_INC . 'lib/plugins/');
+// must be run within Dokuwiki
+if(!defined('DOKU_INC')) die();
+
+if(!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
 require_once (DOKU_PLUGIN . 'syntax.php');
 
 class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
-
-    function getInfo() {
-        return array (
-            'author' => 'Gina Haeussge',
-            'email' => 'osd@foosel.net',
-            'date' => '2008-05-04',
-            'name' => 'Blockquote Plugin (cite component)',
-            'desc' => 'Provides an environment for quotes in a semantically correct way using the blockquote XHTML tag',
-            'url' => 'http://wiki.foosel.net/snippets/dokuwiki/blockquote',
-        );
-    }
 
     function getType() {
         return 'formatting';
