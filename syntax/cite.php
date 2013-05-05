@@ -19,18 +19,18 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
     function getType() {
         return 'formatting';
     }
-    
+
     function getPType() {
         return 'block';
     }
-    
+
     function getAllowedTypes() {
         return array (
             'substition',
             'formatting',
         );
     }
-    
+
     function getSort() {
         return 123;
     }
@@ -44,7 +44,7 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
     function connectTo($mode) {
         $this->Lexer->addEntryPattern('<cite>(?=.*?</cite>)', $mode, 'plugin_blockquote_cite');
     }
-    
+
     function postConnect() {
         $this->Lexer->addExitPattern('</cite>', 'plugin_blockquote_cite');
     }

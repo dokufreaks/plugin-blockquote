@@ -19,11 +19,11 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
     function getType() {
         return 'container';
     }
-    
+
     function getPType() {
         return 'stack';
     }
-    
+
     function getAllowedTypes() {
         return array (
             'container',
@@ -34,7 +34,7 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
             'paragraphs'
         );
     }
-    
+
     function getSort() {
         return 123;
     }
@@ -48,7 +48,7 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
     function connectTo($mode) {
         $this->Lexer->addEntryPattern('<blockquote.*?>(?=.*?</blockquote>)', $mode, 'plugin_blockquote_quote');
     }
-    
+
     function postConnect() {
         $this->Lexer->addExitPattern('</blockquote>', 'plugin_blockquote_quote');
     }
@@ -58,7 +58,7 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
         switch ($state) {
 
             case DOKU_LEXER_ENTER :
-            	$source = trim(substr($match, 11, -1));
+                $source = trim(substr($match, 11, -1));
                 return array (
                     $state,
                     $source
@@ -86,9 +86,9 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
             switch ($state) {
                 case DOKU_LEXER_ENTER :
                     if ($data && strlen($data) > 0)
-                    	$renderer->doc .= '</p><blockquote cite="'.$renderer->_xmlEntities($data).'" class="blockquote-plugin">';
+                        $renderer->doc .= '</p><blockquote cite="'.$renderer->_xmlEntities($data).'" class="blockquote-plugin">';
                     else
-                    	$renderer->doc .= '</p><blockquote class="blockquote-plugin">';
+                        $renderer->doc .= '</p><blockquote class="blockquote-plugin">';
                     break;
 
                 case DOKU_LEXER_UNMATCHED :

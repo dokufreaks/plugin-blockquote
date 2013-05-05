@@ -6,5 +6,5 @@
  *
  * @author Gina Haeussge <osd@foosel.net>
  */
- 
+
 $lang['qb_blockquote'] = 'Mark text as blockquote';
