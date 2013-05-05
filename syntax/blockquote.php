@@ -47,10 +47,12 @@ class syntax_plugin_blockquote_blockquote extends DokuWiki_Syntax_Plugin {
 
     function connectTo($mode) {
         $this->Lexer->addEntryPattern('<blockquote.*?>(?=.*?</blockquote>)', $mode, 'plugin_blockquote_blockquote');
+        $this->Lexer->addEntryPattern('<QUOTE.*?>(?=.*?</QUOTE>)', $mode, 'plugin_blockquote_blockquote');
     }
 
     function postConnect() {
         $this->Lexer->addExitPattern('</blockquote>', 'plugin_blockquote_blockquote');
+        $this->Lexer->addExitPattern('</QUOTE>', 'plugin_blockquote_blockquote');
     }
 
     function handle($match, $state, $pos, & $handler) {
@@ -58,7 +60,7 @@ class syntax_plugin_blockquote_blockquote extends DokuWiki_Syntax_Plugin {
         switch ($state) {
 
             case DOKU_LEXER_ENTER :
-                $source = trim(substr($match, 11, -1));
+                $source = trim(substr($match,strpos($match,' '),-1));
                 return array (
                     $state,
                     $source

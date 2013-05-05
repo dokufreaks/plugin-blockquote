@@ -100,7 +100,7 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
                     break;
 
                 case DOKU_LEXER_EXIT :
-                    $renderer->doc .= "\n</cite>";
+                    $renderer->doc .= "</cite>";
                     break;
             }
             return true;

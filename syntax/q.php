@@ -44,10 +44,12 @@ class syntax_plugin_blockquote_q extends DokuWiki_Syntax_Plugin {
 
     function connectTo($mode) {
         $this->Lexer->addEntryPattern('<q.*?>(?=.*?</q>)', $mode, 'plugin_blockquote_q');
+        $this->Lexer->addEntryPattern('<quote.*?>(?=.*?</quote>)', $mode, 'plugin_blockquote_q');
     }
 
     function postConnect() {
         $this->Lexer->addExitPattern('</q>', 'plugin_blockquote_q');
+        $this->Lexer->addExitPattern('</quote>', 'plugin_blockquote_q');
     }
 
     function handle($match, $state, $pos, & $handler) {
@@ -55,7 +57,7 @@ class syntax_plugin_blockquote_q extends DokuWiki_Syntax_Plugin {
         switch ($state) {
 
             case DOKU_LEXER_ENTER :
-                $source = trim(substr($match, 2, -1));
+                $source = trim(substr($match,strpos($match,' '),-1));
                 return array (
                     $state,
                     $source
