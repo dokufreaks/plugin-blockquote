@@ -80,7 +80,10 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
 
             switch ($state) {
                 case DOKU_LEXER_ENTER :
-                    $renderer->doc .= '<cite class="blockquote-plugin">';
+                    $classes = ($this->getConf('addStyling')) ? 'blockquote-plugin' : '';
+                    if ($classes) $classes = 'class="'.$classes.'"';
+
+                    $renderer->doc .= '<cite '.$classes.'>';
                     break;
 
                 case DOKU_LEXER_UNMATCHED :
