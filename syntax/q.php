@@ -8,30 +8,27 @@
  * @author  Gina Haeussge <osd@foosel.net>
  */
 
-// must be run within Dokuwiki
-if(!defined('DOKU_INC')) die();
-
-if(!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
+if (!defined('DOKU_INC'))
+    define('DOKU_INC', realpath(dirname(__FILE__) . '/../../') . '/');
+if (!defined('DOKU_PLUGIN'))
+    define('DOKU_PLUGIN', DOKU_INC . 'lib/plugins/');
 require_once (DOKU_PLUGIN . 'syntax.php');
 
-class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
+class syntax_plugin_blockquote_q extends DokuWiki_Syntax_Plugin {
 
     function getType() {
-        return 'container';
+        return 'formatting';
     }
 
     function getPType() {
-        return 'stack';
+        return 'normal';
     }
 
     function getAllowedTypes() {
         return array (
-            'container',
             'substition',
-            'protected',
-            'disabled',
             'formatting',
-            'paragraphs'
+            'disabled',
         );
     }
 
@@ -46,11 +43,11 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
     }
 
     function connectTo($mode) {
-        $this->Lexer->addEntryPattern('<blockquote.*?>(?=.*?</blockquote>)', $mode, 'plugin_blockquote_quote');
+        $this->Lexer->addEntryPattern('<q.*?>(?=.*?</q>)', $mode, 'plugin_blockquote_q');
     }
 
     function postConnect() {
-        $this->Lexer->addExitPattern('</blockquote>', 'plugin_blockquote_quote');
+        $this->Lexer->addExitPattern('</q>', 'plugin_blockquote_q');
     }
 
     function handle($match, $state, $pos, & $handler) {
@@ -58,7 +55,7 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
         switch ($state) {
 
             case DOKU_LEXER_ENTER :
-                $source = trim(substr($match, 11, -1));
+                $source = trim(substr($match, 2, -1));
                 return array (
                     $state,
                     $source
@@ -85,7 +82,6 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
 
             switch ($state) {
                 case DOKU_LEXER_ENTER :
-
                     $pluginClass = ($this->getConf('addStyling')) ? 'blockquote-plugin' : '';
                     $attr = '';
                     if (($data && strlen($data) > 0) && !plugin_isdisabled('wrap')) {
@@ -96,7 +92,7 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
                         $attr = 'class="'.$pluginClass.'"';
                     }
 
-                    $renderer->doc .= '<blockquote '.$attr.'>';
+                    $renderer->doc .= '<q '.$attr.'>';
                     break;
 
                 case DOKU_LEXER_UNMATCHED :
@@ -104,7 +100,7 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
                     break;
 
                 case DOKU_LEXER_EXIT :
-                    $renderer->doc .= "\n</blockquote>";
+                    $renderer->doc .= "</q>";
                     break;
             }
             return true;
