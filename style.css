@@ -1,12 +1,13 @@
+
 /* blockquote */
-blockquote.blockquote-plugin {
-    margin: 1em 3em 1em 3em !important;
-    border: 1px dotted __border__ !important;
-    background: __background_neu__ url(images/blockquote.gif) no-repeat 0.3em 0.3em !important;
+.dokuwiki blockquote.blockquote-plugin {
+    margin: 1em 3em 1em 3em;
+    border: 1px dotted __border__;
+    background: __background_neu__ url(images/blockquote.gif) no-repeat 0.3em 0.3em;
     padding: 1em !important;
 }
 
-blockquote.blockquote-plugin[cite]:after {
+.dokuwiki blockquote.blockquote-plugin[cite]:after {
     font-style: italic;
     text-align: right;
     display: block;
@@ -14,12 +15,12 @@ blockquote.blockquote-plugin[cite]:after {
 }
 
 /* cite */
-cite.blockquote-plugin {
+.dokuwiki cite.blockquote-plugin {
     font-style: italic;
     text-align: right;
     display: block;
 }
 
-cite.blockquote-plugin:before {
+.dokuwiki cite.blockquote-plugin:before {
     content: "—";
 }
