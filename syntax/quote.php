@@ -86,9 +86,9 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
             switch ($state) {
                 case DOKU_LEXER_ENTER :
                     if ($data && strlen($data) > 0)
-                        $renderer->doc .= '</p><blockquote cite="'.$renderer->_xmlEntities($data).'" class="blockquote-plugin">';
+                        $renderer->doc .= '<blockquote cite="'.$renderer->_xmlEntities($data).'" class="blockquote-plugin">';
                     else
-                        $renderer->doc .= '</p><blockquote class="blockquote-plugin">';
+                        $renderer->doc .= '<blockquote class="blockquote-plugin">';
                     break;
 
                 case DOKU_LEXER_UNMATCHED :
@@ -96,7 +96,7 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
                     break;
 
                 case DOKU_LEXER_EXIT :
-                    $renderer->doc .= "\n</blockquote><p>";
+                    $renderer->doc .= "\n</blockquote>";
                     break;
             }
             return true;
