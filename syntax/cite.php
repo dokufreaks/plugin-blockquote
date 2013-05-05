@@ -6,6 +6,7 @@
  *
  * @license GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author  Gina Haeussge <osd@foosel.net>
+ * @author  Anika Henke <anika@selfthinker.org>
  */
 
 // must be run within Dokuwiki

@@ -1,7 +1,7 @@
 base   blockquote
-author Gina Haeussge
-email  osd@foosel.net
-date   2008-05-04
+author Anika Henke (previous author: Gina Haeussge)
+email  anika@selfthinker.org
+date   2013-05-05
 name   Blockquote Plugin
-desc   Provides an environment for quotes in a semantically correct way using the blockquote XHTML tag. Action component provides toolbar button.
-url    http://wiki.foosel.net/snippets/dokuwiki/blockquote
+desc   Write quotations in a semantically correct way
+url    https://www.dokuwiki.org/plugin:blockquote
