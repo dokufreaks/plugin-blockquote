@@ -28,6 +28,7 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
         return array (
             'substition',
             'formatting',
+            'disabled',
         );
     }
 
@@ -42,7 +43,7 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
     }
 
     function connectTo($mode) {
-        $this->Lexer->addEntryPattern('<cite>(?=.*?</cite>)', $mode, 'plugin_blockquote_cite');
+        $this->Lexer->addEntryPattern('<cite.*?>(?=.*?</cite>)', $mode, 'plugin_blockquote_cite');
     }
 
     function postConnect() {
@@ -54,9 +55,10 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
         switch ($state) {
 
             case DOKU_LEXER_ENTER :
+                $source = trim(substr($match, 5, -1));
                 return array (
                     $state,
-                    ''
+                    $source
                 );
 
             case DOKU_LEXER_UNMATCHED :
@@ -80,10 +82,17 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
 
             switch ($state) {
                 case DOKU_LEXER_ENTER :
-                    $classes = ($this->getConf('addStyling')) ? 'blockquote-plugin' : '';
-                    if ($classes) $classes = 'class="'.$classes.'"';
+                    $pluginClass = ($this->getConf('addStyling')) ? 'blockquote-plugin' : '';
+                    $attr = '';
+                    if (($data && strlen($data) > 0) && !plugin_isdisabled('wrap')) {
+                        // get attributes from wrap helper plugin (if installed)
+                        $wrap =& plugin_load('helper', 'wrap');
+                        $attr = $wrap->buildAttributes($data, $pluginClass);
+                    } else if ($pluginClass) {
+                        $attr = 'class="'.$pluginClass.'"';
+                    }
 
-                    $renderer->doc .= '<cite '.$classes.'>';
+                    $renderer->doc .= '<cite '.$attr.'>';
                     break;
 
                 case DOKU_LEXER_UNMATCHED :

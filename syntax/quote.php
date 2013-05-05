@@ -85,13 +85,18 @@ class syntax_plugin_blockquote_quote extends DokuWiki_Syntax_Plugin {
 
             switch ($state) {
                 case DOKU_LEXER_ENTER :
-                    $classes = ($this->getConf('addStyling')) ? 'blockquote-plugin' : '';
-                    if ($classes) $classes = 'class="'.$classes.'"';
 
-                    if ($data && strlen($data) > 0)
-                        $renderer->doc .= '<blockquote cite="'.$renderer->_xmlEntities($data).'" '.$classes.'>';
-                    else
-                        $renderer->doc .= '<blockquote '.$classes.'>';
+                    $pluginClass = ($this->getConf('addStyling')) ? 'blockquote-plugin' : '';
+                    $attr = '';
+                    if (($data && strlen($data) > 0) && !plugin_isdisabled('wrap')) {
+                        // get attributes from wrap helper plugin (if installed)
+                        $wrap =& plugin_load('helper', 'wrap');
+                        $attr = $wrap->buildAttributes($data, $pluginClass);
+                    } else if ($pluginClass) {
+                        $attr = 'class="'.$pluginClass.'"';
+                    }
+
+                    $renderer->doc .= '<blockquote '.$attr.'>';
                     break;
 
                 case DOKU_LEXER_UNMATCHED :
