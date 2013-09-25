@@ -5,4 +5,4 @@
  * 
  * @author Myeongjin <aranet100@gmail.com>
  */
-$lang['qb_blockquote']         = '문구를 인용구로 표시';
+$lang['qb_blockquote']         = '텍스트를 따옴표로 표시';
