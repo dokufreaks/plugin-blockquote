@@ -51,7 +51,7 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
         $this->Lexer->addExitPattern('</cite>', 'plugin_blockquote_cite');
     }
 
-    function handle($match, $state, $pos, & $handler) {
+    function handle($match, $state, $pos, Doku_Handler $handler) {
 
         switch ($state) {
 
@@ -76,7 +76,7 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
         }
     }
 
-    function render($mode, & $renderer, $indata) {
+    function render($mode, Doku_Renderer $renderer, $indata) {
         if ($mode == 'xhtml') {
 
             list ($state, $data) = $indata;
