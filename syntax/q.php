@@ -44,8 +44,8 @@ class syntax_plugin_blockquote_q extends DokuWiki_Syntax_Plugin {
     }
 
     function connectTo($mode) {
-        $this->Lexer->addEntryPattern('<q.*?>(?=.*?</q>)', $mode, 'plugin_blockquote_q');
-        $this->Lexer->addEntryPattern('<quote.*?>(?=.*?</quote>)', $mode, 'plugin_blockquote_q');
+        $this->Lexer->addEntryPattern('<q\b.*?>(?=.*?</q>)', $mode, 'plugin_blockquote_q');
+        $this->Lexer->addEntryPattern('<quote\b.*?>(?=.*?</quote>)', $mode, 'plugin_blockquote_q');
     }
 
     function postConnect() {

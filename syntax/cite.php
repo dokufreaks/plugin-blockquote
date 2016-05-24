@@ -44,7 +44,7 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
     }
 
     function connectTo($mode) {
-        $this->Lexer->addEntryPattern('<cite.*?>(?=.*?</cite>)', $mode, 'plugin_blockquote_cite');
+        $this->Lexer->addEntryPattern('<cite\b.*?>(?=.*?</cite>)', $mode, 'plugin_blockquote_cite');
     }
 
     function postConnect() {
