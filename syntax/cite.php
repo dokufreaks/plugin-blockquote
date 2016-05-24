@@ -90,10 +90,10 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
                         $wrap = plugin_load('helper', 'wrap');
                         $attr = $wrap->buildAttributes($data, $pluginClass);
                     } else if ($pluginClass) {
-                        $attr = 'class="'.$pluginClass.'"';
+                        $attr = ' class="'.$pluginClass.'"';
                     }
 
-                    $renderer->doc .= '<cite '.$attr.'>';
+                    $renderer->doc .= '<cite'.$attr.'>';
                     break;
 
                 case DOKU_LEXER_UNMATCHED :
