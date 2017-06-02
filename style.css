@@ -22,7 +22,21 @@
 }
 
 /* q */
-.dokuwiki q.blockquote-plugin {
+.dokuwiki q.blockquote-plugin {\0022
     border: 1px dotted __border__;
     background: __background_alt__;
+    quotes: "\0022" "\0022" "\0027" "\0027";
+    /*
+" 	double quote 	\0022
+' 	single quote 	\0027
+‹ 	single, left angle quote 	\2039
+› 	single, right angle quote 	\203A
+« 	double, left angle quote 	\00AB
+» 	double, right angle quote 	\00BB
+‘ 	left quote (single high-6) 	\2018
+’ 	right quote (single high-9) 	\2019
+“ 	left quote (double high-6) 	\201C
+” 	right quote (double high-9) 	\201D
+„ 	double quote (double low-9) 	\201E
+    */
 }
