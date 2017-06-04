@@ -22,7 +22,7 @@
 }
 
 /* q */
-.dokuwiki q.blockquote-plugin {\0022
+.dokuwiki q.blockquote-plugin {
     border: 1px dotted __border__;
     background: __background_alt__;
     quotes: "\0022" "\0022" "\0027" "\0027";
