@@ -30,4 +30,6 @@
 .dokuwiki q.blockquote-plugin {
     border: 1px dotted __border__;
     background: __background_alt__;
+    /* CSS quotes property quotation mark entity numbers can be customized */
+    quotes: "\0022" "\0022" "\0027" "\0027";
 }
