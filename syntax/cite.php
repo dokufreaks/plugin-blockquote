@@ -44,7 +44,7 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
     }
 
     function connectTo($mode) {
-        $this->Lexer->addEntryPattern('<cite.*?>(?=.*?</cite>)', $mode, 'plugin_blockquote_cite');
+        $this->Lexer->addEntryPattern('<cite\b.*?>(?=.*?</cite>)', $mode, 'plugin_blockquote_cite');
     }
 
     function postConnect() {
@@ -87,13 +87,13 @@ class syntax_plugin_blockquote_cite extends DokuWiki_Syntax_Plugin {
                     $attr = '';
                     if (($data && strlen($data) > 0) && !plugin_isdisabled('wrap')) {
                         // get attributes from wrap helper plugin (if installed)
-                        $wrap =& plugin_load('helper', 'wrap');
+                        $wrap = plugin_load('helper', 'wrap');
                         $attr = $wrap->buildAttributes($data, $pluginClass);
                     } else if ($pluginClass) {
-                        $attr = 'class="'.$pluginClass.'"';
+                        $attr = ' class="'.$pluginClass.'"';
                     }
 
-                    $renderer->doc .= '<cite '.$attr.'>';
+                    $renderer->doc .= '<cite'.$attr.'>';
                     break;
 
                 case DOKU_LEXER_UNMATCHED :

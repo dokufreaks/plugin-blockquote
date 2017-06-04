@@ -47,8 +47,8 @@ class syntax_plugin_blockquote_blockquote extends DokuWiki_Syntax_Plugin {
     }
 
     function connectTo($mode) {
-        $this->Lexer->addEntryPattern('<blockquote.*?>(?=.*?</blockquote>)', $mode, 'plugin_blockquote_blockquote');
-        $this->Lexer->addEntryPattern('<QUOTE.*?>(?=.*?</QUOTE>)', $mode, 'plugin_blockquote_blockquote');
+        $this->Lexer->addEntryPattern('<blockquote\b.*?>(?=.*?</blockquote>)', $mode, 'plugin_blockquote_blockquote');
+        $this->Lexer->addEntryPattern('<QUOTE\b.*?>(?=.*?</QUOTE>)', $mode, 'plugin_blockquote_blockquote');
     }
 
     function postConnect() {
@@ -93,13 +93,13 @@ class syntax_plugin_blockquote_blockquote extends DokuWiki_Syntax_Plugin {
                     $attr = '';
                     if (($data && strlen($data) > 0) && !plugin_isdisabled('wrap')) {
                         // get attributes from wrap helper plugin (if installed)
-                        $wrap =& plugin_load('helper', 'wrap');
+                        $wrap = plugin_load('helper', 'wrap');
                         $attr = $wrap->buildAttributes($data, $pluginClass);
                     } else if ($pluginClass) {
-                        $attr = 'class="'.$pluginClass.'"';
+                        $attr = ' class="'.$pluginClass.'"';
                     }
 
-                    $renderer->doc .= '<blockquote '.$attr.'>';
+                    $renderer->doc .= '<blockquote'.$attr.'>';
                     break;
 
                 case DOKU_LEXER_UNMATCHED :
